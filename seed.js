@@ -20,10 +20,10 @@ for (let row = 1; row <= 12; row++) {
   }
 }
 
-// Choose a random number of seats to mark as booked
+
 const numBookedSeats = Math.floor(Math.random() * 3) + 6;
 
-// Mark the seats as booked by shuffling the array and updating the isBooked property
+
 for (let i = 0; i < numBookedSeats; i++) {
   const randomIndex = Math.floor(Math.random() * seats.length);
   seats[randomIndex].isBooked = true;
@@ -37,7 +37,7 @@ const train = new Train({
   coach,
 });
 
-// Define a function to delete the data present in MongoDB
+
 const deleteData = async () => {
   try {
     await Train.deleteMany({});
@@ -47,7 +47,7 @@ const deleteData = async () => {
   }
 };
 
-// Call the deleteData function before seeding new data
+
 deleteData().then(async () => {
   try {
     await train.save();
