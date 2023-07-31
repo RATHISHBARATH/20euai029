@@ -12,7 +12,6 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    // Fetch train data from the backend
     const fetchTrainData = async () => {
       const { data } = await axios.get(`${API_URI}/api/train`);
       setTrainData(data.train);
@@ -22,7 +21,6 @@ const App = () => {
 
   const handleBookSeats = async () => {
     try {
-      // Send booking request to backend
       const { data } = await axios.post(`${API_URI}/api/train`, { numSeats });
       toast.success(`Booked Seat No: ${data.seats.join(', ')}`, {
         position: 'top-right',
@@ -30,7 +28,6 @@ const App = () => {
       });
       setNumSeats('');
 
-      // Refresh train data from backend
       const { data: newData } = await axios.get(`${API_URI}/api/train`);
       setTrainData(newData.train);
     } catch (err) {
@@ -41,14 +38,10 @@ const App = () => {
   const handleInputChange = (event) => {
     const inputValue = parseInt(event.target.value) || '';
     if (inputValue < 1 || inputValue > 7) {
-      // Set error message for invalid input
       setErrorMessage('Seats should be booked in a range of 1 - 7');
-      // Clear numSeats state
       setNumSeats('');
     } else {
-      // Update numSeats state with valid input
-      setNumSeats(inputValue); // Set numSeats to the new value entered by the user
-      // Clear error message
+      setNumSeats(inputValue); 
       setErrorMessage('');
     }
   };
